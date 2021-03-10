@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_asset_assets",
+  "info": {
+    "name": "Asset",
+    "icon": "file-image"
+  },
+  "options": {},
+  "attributes": {
+    "file": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "positionX": {
+      "type": "float"
+    },
+    "positionY": {
+      "type": "float"
+    },
+    "positionZ": {
+      "type": "float"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_marker_less_asset_marker_less_assets",
+  "info": {
+    "name": "Marker Less Asset",
+    "icon": "image",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "file": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "target_category": {
+      "model": "target-categories"
+    },
+    "positionX": {
+      "type": "float"
+    },
+    "positionY": {
+      "type": "float"
+    },
+    "positionZ": {
+      "type": "float"
+    }
+  }
+}

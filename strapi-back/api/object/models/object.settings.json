@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "objects",
+  "info": {
+    "name": "Marker Based",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "experience_category": {
+      "model": "category"
+    },
+    "asset": {
+      "type": "component",
+      "repeatable": true,
+      "component": "marker-based-asset.asset"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "marker": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    }
+  }
+}

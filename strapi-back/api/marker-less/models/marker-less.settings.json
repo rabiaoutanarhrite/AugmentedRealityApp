@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "marker_lesses",
+  "info": {
+    "name": "Marker Less",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "MarkerLessAsset": {
+      "type": "component",
+      "repeatable": false,
+      "component": "marker-less-asset.marker-less-asset"
+    },
+    "experience_category": {
+      "model": "category"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    }
+  }
+}

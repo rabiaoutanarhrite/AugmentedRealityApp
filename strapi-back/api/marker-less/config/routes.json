@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/marker-lesses",
+      "handler": "marker-less.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/marker-lesses/count",
+      "handler": "marker-less.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/marker-lesses/:id",
+      "handler": "marker-less.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/marker-lesses",
+      "handler": "marker-less.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/marker-lesses/:id",
+      "handler": "marker-less.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/marker-lesses/:id",
+      "handler": "marker-less.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
