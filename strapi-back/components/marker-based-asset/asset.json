@@ -1,8 +1,9 @@
 {
   "collectionName": "components_asset_assets",
   "info": {
-    "name": "Asset",
-    "icon": "file-image"
+    "name": "Asset_Android",
+    "icon": "file-image",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -24,6 +25,15 @@
       "type": "float"
     },
     "positionZ": {
+      "type": "float"
+    },
+    "rotationX": {
+      "type": "float"
+    },
+    "rotationY": {
+      "type": "float"
+    },
+    "rotationZ": {
       "type": "float"
     }
   }

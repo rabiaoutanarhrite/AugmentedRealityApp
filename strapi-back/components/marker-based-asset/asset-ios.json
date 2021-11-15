@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_marker_based_asset_asset_ios",
+  "info": {
+    "name": "Asset_IOS",
+    "icon": "ad",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "file": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "positionX": {
+      "type": "float"
+    },
+    "positionY": {
+      "type": "float"
+    },
+    "positionZ": {
+      "type": "float"
+    },
+    "rotationX": {
+      "type": "float"
+    },
+    "rotationY": {
+      "type": "float"
+    },
+    "rotationZ": {
+      "type": "float"
+    }
+  }
+}

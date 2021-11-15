@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/splash-settings",
+      "handler": "splash-settings.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/splash-settings",
+      "handler": "splash-settings.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/splash-settings",
+      "handler": "splash-settings.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

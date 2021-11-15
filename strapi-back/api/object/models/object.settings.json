@@ -14,7 +14,7 @@
     "experience_category": {
       "model": "category"
     },
-    "asset": {
+    "asset_android": {
       "type": "component",
       "repeatable": true,
       "component": "marker-based-asset.asset"
@@ -35,6 +35,11 @@
       ],
       "plugin": "upload",
       "required": false
+    },
+    "asset_ios": {
+      "type": "component",
+      "repeatable": true,
+      "component": "marker-based-asset.asset-ios"
     }
   }
 }

@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "target_categories",
   "info": {
-    "name": "Target Categories"
+    "name": "Target Categories",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -23,6 +24,12 @@
       ],
       "plugin": "upload",
       "required": false
+    },
+    "xr_detection_mode": {
+      "type": "string"
+    },
+    "category_url": {
+      "type": "string"
     }
   }
 }

@@ -25,8 +25,16 @@
       "plugin": "upload",
       "required": false
     },
-    "description": {
-      "type": "richtext"
+    "category_url": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Horizontal",
+        "Vertical",
+        "ImageTracking"
+      ]
     }
   }
 }

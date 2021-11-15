@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "splash_settings",
+  "info": {
+    "name": "Splash Settings"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Logo_Image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "Logo_Name": {
+      "type": "string"
+    },
+    "Background_Color": {
+      "type": "string"
+    }
+  }
+}

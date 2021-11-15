@@ -1,4 +1,10 @@
-# sdc
+# Unity Config
+
+* Install Unity Hub
+* Instal Unity Version 2020.2.6f1 + Android SDK or IOS SDK
+* Download Unity Folder and Open it using Unity Hub
+* Switching Unity Platform from PC to Android or IOS by selecting File > Build Settings > Select Platform then Switch 
+
 
 ## Tools and frameworks
 
