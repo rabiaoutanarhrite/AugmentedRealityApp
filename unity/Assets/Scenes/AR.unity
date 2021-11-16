@@ -3203,10 +3203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb70238f0193b4645ab13564c8afbea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contentGObject: {fileID: 917701721}
   pnlTemp: {fileID: 1898465850}
   defaultIcon: {fileID: 0}
-  infoText: {fileID: 0}
   allTextures: []
   arTrackedImageRuntime: {fileID: 379163994}
   objectParent: {fileID: 3911804389766485130, guid: 682af2d0be4d3b641a4d8cf0f8cc89fb,
@@ -4554,10 +4552,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb70238f0193b4645ab13564c8afbea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contentGObject: {fileID: 917701721}
   pnlTemp: {fileID: 1898465850}
   defaultIcon: {fileID: 0}
-  infoText: {fileID: 0}
   allTextures: []
   arTrackedImageRuntime: {fileID: 379163994}
   objectParent: {fileID: 0}

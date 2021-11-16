@@ -9,7 +9,7 @@ public class ShareUrl : MonoBehaviour
     [Tooltip("Put the Url of your host")]
     public string url;
 
-    public static ShareUrl Instance { get { return _instance; } }
+    public static ShareUrl Instance { get { return _instance; } } //Create a singleton
      
     private void Awake()
     {
@@ -22,7 +22,7 @@ public class ShareUrl : MonoBehaviour
             _instance = this;
         }
 
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(this.gameObject); //keep this object in all scenes
 
     }
 }

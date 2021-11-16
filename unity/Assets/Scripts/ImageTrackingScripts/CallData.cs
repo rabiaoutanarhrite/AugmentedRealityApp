@@ -8,22 +8,24 @@ using UnityEngine.Networking;
 
 public class CallData : MonoBehaviour
 {
-	[SerializeField] private GameObject contentGObject;
+	[Tooltip("The gameobject of Panel template.")]
+	[SerializeField] private GameObject pnlTemp; //Panel of images information.
 
-	[SerializeField] private GameObject pnlTemp;
+	[Tooltip("Default image if can't call data.")]
+	[SerializeField] private Sprite defaultIcon; //Default image if can't call data
 
-	[SerializeField] private Sprite defaultIcon;
+	private string url; //the url of your host .
 
-	[SerializeField] private Text infoText;
+	[Tooltip("Make a list of textures for adding them to ImageReferenceLibrary.")]
+	public List<Texture2D> allTextures; //Make a list of textures for adding them to ImageReferenceLibrary.
 
-	private string url;
-	
-	public List<Texture2D> allTextures;
-
+	[Tooltip("Tracked Image Info Runtime Save Manager Script Component.")]
 	public TrackedImageInfoRuntimeSaveManager arTrackedImageRuntime;
 
+	[Tooltip("The prefab of objects parent.")]
 	[SerializeField] private GameObject objectParent;
 
+//*********************** Structs to get data from json file  **************************//
 	[Serializable]
 	public struct Info
 	{
@@ -88,14 +90,17 @@ public class CallData : MonoBehaviour
 
 	Info[] allInfos;
 
+	//****************************************************************//
+
 	void Start()
 	{
-		url = ShareUrl.Instance.url;
+		url = ShareUrl.Instance.url; //get host url from the singleton object
 
-		UIManager.instance.loadingBar.SetActive(true);
+		UIManager.instance.loadingBar.SetActive(true); //Activing the loading bar 
 
 		//fetch data from Json
-		StartCoroutine(GetData());
+		StartCoroutine(GetData()); //Start getting data by using the Couroutine
+
 		Debug.Log(Application.persistentDataPath);
 
 	}
@@ -114,7 +119,7 @@ public class CallData : MonoBehaviour
 
 		for (int i = 0; i < N; i++)
 		{
-			g = Instantiate(panelTemplate, contentGObject.transform);
+			g = Instantiate(panelTemplate, this.transform);
 
 			g.transform.GetChild(0).GetComponent<Image>().sprite = allInfos[i].icon;
 			g.transform.GetChild(1).GetComponent<Text>().text = allInfos[i].name;
@@ -127,8 +132,7 @@ public class CallData : MonoBehaviour
 			t.name = allInfos[i].name;
 			allTextures.Add(t);
 
-			arTrackedImageRuntime.ExternalAddJob(t);
- 			Debug.Log("Texture format: " + t.format + " W: " + t.width + "H: " + t.height);
+			arTrackedImageRuntime.ExternalAddJob(t); //Adding Images textures to the XRReferenceImageLibrary for the processing.
 		}
 
  		panelTemplate.SetActive(false);
@@ -137,7 +141,6 @@ public class CallData : MonoBehaviour
 	//***************************************************
 	IEnumerator GetData()
 	{
-		//string url = "http://192.168.1.106:1337/objects?experience_category.name=My%20Museum";
 
 		UnityWebRequest request = UnityWebRequest.Get(url + "/objects?experience_category.name=My%20Museum");
 		request.chunkedTransfer = false;
@@ -212,6 +215,9 @@ public class CallData : MonoBehaviour
 
 		for (int i = 0; i < allInfos.Length; i++)
 		{
+
+#if UNITY_ANDROID
+
 			for (int j = 0; j < allInfos[i].asset_android.Length; j++)
             {
 				Debug.Log(allInfos[i].asset_android[j].file.url);
@@ -225,7 +231,6 @@ public class CallData : MonoBehaviour
 				}
 				else
 				{
-					//tx = new Texture2D(512, 512, TextureFormat.ARGB32, false);
 					if (w.isDone)
 					{
 						AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(w);
@@ -255,6 +260,56 @@ public class CallData : MonoBehaviour
 					}
 				}
 			}
+
+#else
+
+			for (int k = 0; k < allInfos[i].asset_ios.Length; k++)
+			{
+				Debug.Log(allInfos[i].asset_ios[k].file.url);
+				UnityWebRequest w = UnityWebRequestAssetBundle.GetAssetBundle(url + allInfos[i].asset_ios[k].file.url);
+				yield return w.SendWebRequest();
+
+				if (w.result == UnityWebRequest.Result.ConnectionError)
+				{
+					//error 
+					Debug.Log("Network error");
+				}
+				else
+				{
+					//tx = new Texture2D(512, 512, TextureFormat.ARGB32, false);
+					if (w.isDone)
+					{
+						AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(w);
+						if (bundle != null)
+						{
+							GameObject objParent = Instantiate(objectParent, Vector3.zero, Quaternion.identity);
+							Vector3 assetPosition = new Vector3(allInfos[i].asset_ios[k].positionX / 10, allInfos[i].asset_ios[k].positionY / 10, allInfos[i].asset_ios[k].positionZ / 10);
+							//Quaternion assetRotation = Quaternion.Euler(allInfos[i].asset_android[j].rotationX, allInfos[i].asset_android[j].rotationY, allInfos[i].asset_android[j].rotationZ);
+							string rootAssetPath = bundle.GetAllAssetNames()[0];
+							GameObject arObject = Instantiate(bundle.LoadAsset(rootAssetPath) as GameObject, assetPosition, Quaternion.identity, objParent.transform);
+							bundle.Unload(false);
+
+							objParent.name = allInfos[i].name;
+							arTrackedImageRuntime.newList.Add(objParent);
+							objParent.SetActive(false);
+
+
+							Debug.Log("Pos: " + arObject.transform.position);
+
+						}
+						else
+						{
+							Debug.Log("Not a valid asset Bundle");
+
+						}
+
+					}
+				}
+			}
+
+#endif
+			Debug.Log("Another platform!");
+
 		}
 	}
 

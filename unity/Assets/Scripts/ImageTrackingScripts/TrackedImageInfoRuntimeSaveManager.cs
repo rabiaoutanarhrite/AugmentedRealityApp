@@ -8,21 +8,17 @@ using UnityEngine.XR.ARSubsystems;
 
 public class TrackedImageInfoRuntimeSaveManager : MonoBehaviour
 {
+    //[SerializeField] private GameObject prefabOnTrack;
 
-    [SerializeField]
-    private Text posText; 
+    [Tooltip("The Scale of the displaying object.")]
+    [SerializeField] private Vector3 scaleFactor = new Vector3(0.1f, 0.1f, 0.1f);
 
-    [SerializeField]
-    private GameObject prefabOnTrack;
+    [Tooltip("Gettting XRReferenceImageLibrary from ARTrackedImageManager Component .")]
+    [SerializeField] private XRReferenceImageLibrary runtimeImageLibrary;
 
-    [SerializeField]
-    private Vector3 scaleFactor = new Vector3(0.1f, 0.1f, 0.1f);
+    private ARTrackedImageManager trackImageManager; //ARTrackedImageManager Component .
 
-    [SerializeField]
-    private XRReferenceImageLibrary runtimeImageLibrary;
- 
-    private ARTrackedImageManager trackImageManager;
-      
+    [Tooltip("List of objects")]
     public List<GameObject> newList;
  
     void Start()
