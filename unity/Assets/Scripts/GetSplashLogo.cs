@@ -47,12 +47,14 @@ public class GetSplashLogo : MonoBehaviour
 
     LogoImage imageInfo; 
 
-    public string url = "http://192.168.1.106:1337/splash-settings";
+    private string url;
 
    
     void Start()
     {
-        StartCoroutine(GetAppInfo());
+        url = ShareUrl.Instance.url;
+        Debug.Log(url);
+        StartCoroutine(GetAppInfo()); 
     }
 
     IEnumerator Wait()
@@ -72,7 +74,7 @@ public class GetSplashLogo : MonoBehaviour
     IEnumerator GetAppInfo()
     {
 
-        UnityWebRequest request = UnityWebRequest.Get(url);
+        UnityWebRequest request = UnityWebRequest.Get(url + "/splash-settings");
         request.chunkedTransfer = false;
         yield return request.Send();
 
@@ -94,7 +96,7 @@ public class GetSplashLogo : MonoBehaviour
     {
         imageInfo = strapiData.Logo_Image;
 
-        WWW w = new WWW("http://192.168.1.106:1337" + imageInfo.url);
+        WWW w = new WWW(url + imageInfo.url);
         yield return w;
 
         if(w.error != null)

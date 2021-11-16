@@ -15,6 +15,8 @@ public class CallData : MonoBehaviour
 	[SerializeField] private Sprite defaultIcon;
 
 	[SerializeField] private Text infoText;
+
+	private string url;
 	
 	public List<Texture2D> allTextures;
 
@@ -88,6 +90,8 @@ public class CallData : MonoBehaviour
 
 	void Start()
 	{
+		url = ShareUrl.Instance.url;
+
 		UIManager.instance.loadingBar.SetActive(true);
 
 		//fetch data from Json
@@ -133,9 +137,9 @@ public class CallData : MonoBehaviour
 	//***************************************************
 	IEnumerator GetData()
 	{
-		string url = "http://192.168.1.106:1337/objects?experience_category.name=My%20Museum";
+		//string url = "http://192.168.1.106:1337/objects?experience_category.name=My%20Museum";
 
-		UnityWebRequest request = UnityWebRequest.Get(url);
+		UnityWebRequest request = UnityWebRequest.Get(url + "/objects?experience_category.name=My%20Museum");
 		request.chunkedTransfer = false;
 		yield return request.Send();
 
@@ -162,8 +166,8 @@ public class CallData : MonoBehaviour
 		for (int i = 0; i < allInfos.Length; i++)
 		{
 			
-			WWW w = new WWW("http://192.168.1.106:1337"  + allInfos[i].marker.formats.small.url);
-			Debug.Log("http://192.168.1.106:1337" + allInfos[i].marker.formats.small.url);
+			WWW w = new WWW(url  + allInfos[i].marker.formats.small.url);
+			Debug.Log(url + allInfos[i].marker.formats.small.url);
 			yield return w;
 
 			if (w.error != null)
@@ -211,7 +215,7 @@ public class CallData : MonoBehaviour
 			for (int j = 0; j < allInfos[i].asset_android.Length; j++)
             {
 				Debug.Log(allInfos[i].asset_android[j].file.url);
-				UnityWebRequest w = UnityWebRequestAssetBundle.GetAssetBundle("http://192.168.1.106:1337" + allInfos[i].asset_android[j].file.url);
+				UnityWebRequest w = UnityWebRequestAssetBundle.GetAssetBundle(url + allInfos[i].asset_android[j].file.url);
 				yield return w.SendWebRequest();
 
 				if (w.result == UnityWebRequest.Result.ConnectionError)
