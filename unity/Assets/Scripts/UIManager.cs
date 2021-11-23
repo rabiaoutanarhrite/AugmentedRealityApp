@@ -143,7 +143,7 @@ public class UIManager : MonoBehaviour
 
     IEnumerator GetCategories()
     {
-        string url = "http://192.168.1.106:1337/categories";
+        string url = ShareUrl.Instance.url + "/categories";
 
         UnityWebRequest request = UnityWebRequest.Get(url);
         request.chunkedTransfer = false;
@@ -167,7 +167,7 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < allCategories.Length; i++)
         {
-            WWW w = new WWW("http://192.168.1.106:1337" + allCategories[i].image.url);
+            WWW w = new WWW(ShareUrl.Instance.url + allCategories[i].image.url);
             yield return w;
 
             if (w.error != null)
