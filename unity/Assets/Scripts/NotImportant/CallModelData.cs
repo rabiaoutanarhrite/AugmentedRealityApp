@@ -84,7 +84,7 @@ public class CallModelData : MonoBehaviour
  
 	void Start()
 	{
-		UIManager.instance.loadingBar.SetActive(true);
+		UIManager.instance.loadingData.SetActive(true);
 		//fetch data from Json
 		StartCoroutine(GetObjects());
 	}
@@ -217,7 +217,7 @@ public class CallModelData : MonoBehaviour
 		}
 
 		DrawUI();
-		UIManager.instance.loadingBar.SetActive(false);
+		UIManager.instance.loadingData.SetActive(false);
 		StartCoroutine(StopAnimation());
  	}
 

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -31,7 +32,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject imageTrackingUI;
     [SerializeField] private GameObject productsUI;
     
-    public GameObject loadingBar;
+    public GameObject loadingCategories;
+    public GameObject loadingData;
+
     public GameObject imageTrackingScanning;
     public GameObject productsScanning;
 
@@ -70,7 +73,7 @@ public class UIManager : MonoBehaviour
 
         gridBtn.interactable = false;
 
-        loadingBar.SetActive(true);
+        loadingCategories.SetActive(true);
     }
 
     private void MakeButtons()
@@ -83,8 +86,9 @@ public class UIManager : MonoBehaviour
         {
             g = Instantiate(GridbuttonTemplate, categoriesGridPnl.transform);
             g.transform.GetChild(0).GetComponent<Image>().sprite = allCategories[i].Icon;
-            g.transform.GetChild(1).GetComponent<Text>().text = allCategories[i].name;
-            
+            g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = allCategories[i].name;
+            g.SetActive(true);
+
             g.GetComponent<Button>().AddEventListener(i, ItemClicked);
         }
 
@@ -94,8 +98,9 @@ public class UIManager : MonoBehaviour
         {
             g = Instantiate(ListbuttonTemplate, categoriesListPnl.transform);
             g.transform.GetChild(0).GetComponent<Image>().sprite = allCategories[i].Icon;
-            g.transform.GetChild(1).GetComponent<Text>().text = allCategories[i].name;
-            
+            g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = allCategories[i].name;
+            g.SetActive(true);
+
             g.GetComponent<Button>().AddEventListener(i, ItemClicked);
         }
 
@@ -187,7 +192,7 @@ public class UIManager : MonoBehaviour
         }
 
         MakeButtons();
-        loadingBar.SetActive(false);
+        loadingCategories.SetActive(false);
 
     }
 

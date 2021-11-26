@@ -5,6 +5,7 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
+using TMPro;
 
 public class CallData : MonoBehaviour
 {
@@ -96,7 +97,7 @@ public class CallData : MonoBehaviour
 	{
 		url = ShareUrl.Instance.url; //get host url from the singleton object
 
-		UIManager.instance.loadingBar.SetActive(true); //Activing the loading bar 
+		UIManager.instance.loadingData.SetActive(true); //Activing the loading bar 
 
 		//fetch data from Json
 		StartCoroutine(GetData()); //Start getting data by using the Couroutine
@@ -122,7 +123,7 @@ public class CallData : MonoBehaviour
 			g = Instantiate(panelTemplate, this.transform);
 
 			g.transform.GetChild(0).GetComponent<Image>().sprite = allInfos[i].icon;
-			g.transform.GetChild(1).GetComponent<Text>().text = allInfos[i].name;
+			g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = allInfos[i].name;
 			
 			byte[] textureBytes = File.ReadAllBytes(Application.persistentDataPath + "/" + allInfos[i].name);
 			Texture2D t = new Texture2D(512, 512, TextureFormat.RGBA32, true);
@@ -197,7 +198,7 @@ public class CallData : MonoBehaviour
 		}
 
 		DrawUI();
-		UIManager.instance.loadingBar.SetActive(false);
+		UIManager.instance.loadingData.SetActive(false);
 		StartCoroutine(StopAnimation());
 	}
 
