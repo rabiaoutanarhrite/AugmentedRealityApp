@@ -124,7 +124,7 @@ public class CallData : MonoBehaviour
 
 			g.transform.GetChild(0).GetComponent<Image>().sprite = allInfos[i].icon;
 			g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = allInfos[i].name;
-			
+			g.SetActive(true);
 			byte[] textureBytes = File.ReadAllBytes(Application.persistentDataPath + "/" + allInfos[i].name);
 			Texture2D t = new Texture2D(512, 512, TextureFormat.RGBA32, true);
 			t.LoadImage(textureBytes);

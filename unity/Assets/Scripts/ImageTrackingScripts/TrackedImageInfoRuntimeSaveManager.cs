@@ -94,20 +94,12 @@ public class TrackedImageInfoRuntimeSaveManager : MonoBehaviour
             {
                 UpdateARImage(trackedImage);
             }
-            else
-            {
-                foreach(GameObject g in newList)
-                {
-                    if(g.name == trackedImage.referenceImage.name)
-                    {
-                        g.SetActive(false);
-                    }
-                }
-            }
+
         }
 
         foreach (ARTrackedImage trackedImage in eventArgs.removed)
         {
+
             foreach (GameObject g in newList)
             {
                 if (g.name == trackedImage.referenceImage.name)
@@ -116,10 +108,6 @@ public class TrackedImageInfoRuntimeSaveManager : MonoBehaviour
                 }
             }
         }
-
-
-
-
     }
 
     public void UpdateARImage(ARTrackedImage trackedImage)
