@@ -67,6 +67,7 @@ public class GetSplashLogo : MonoBehaviour
     void ShowData()
     {
         logoImg.sprite = strapiData.Logo;
+        logoImg.preserveAspect = true;
         logoName.text = strapiData.Logo_Name;
         bgPanel.color = GetColorFromString(strapiData.Background_Color);
     }
@@ -107,6 +108,7 @@ public class GetSplashLogo : MonoBehaviour
             if (w.isDone)
             {
                 Texture2D tx = w.texture;
+             
                 strapiData.Logo = Sprite.Create(tx, new Rect(0f, 0f, tx.width, tx.height), Vector2.zero, 10f);
                 anim.GetComponent<Animator>().enabled = true;
             }
